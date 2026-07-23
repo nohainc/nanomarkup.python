@@ -1,0 +1,18 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+## [Unreleased]
+
+## [0.1.0] - 2026-07-23
+
+- Added a Nano Markup 0.5-draft parser for strings, mappings, and sequences.
+- Added deterministic specification error categories and source locations.
+- Added `load`, `loads`, `dump`, and `dumps` APIs using Python-native values.
+- Added a validation CLI and conformance protocol adapter.
+- Added the pinned official specification and conformance suite.
+- Added typed-package metadata, tests, documentation, and CI for Python 3.11–3.14.
+
+[Unreleased]: https://github.com/nohainc/nanomarkup.python/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/nohainc/nanomarkup.python/releases/tag/v0.1.0
+

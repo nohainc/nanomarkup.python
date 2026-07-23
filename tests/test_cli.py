@@ -23,6 +23,12 @@ def run_cli(*arguments: str, stdin: bytes | None = None) -> subprocess.Completed
 
 
 class CliTests(unittest.TestCase):
+    def test_version(self) -> None:
+        result = run_cli("--version")
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.stdout, b"nanomarkup 0.1.0 (Nano Markup 0.5-draft)\n")
+        self.assertEqual(result.stderr, b"")
+
     def test_valid_file_and_stdin(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "valid.nano"
@@ -47,4 +53,3 @@ class CliTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -7,6 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from ._version import SPEC_VERSION, __version__
 from .decoder import loads
 from .errors import DecodeError
 
@@ -15,6 +16,11 @@ def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="nanomarkup",
         description="Validate Nano Markup 0.5-draft documents.",
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__} (Nano Markup {SPEC_VERSION})",
     )
     parser.add_argument("files", nargs="+", metavar="FILE", help="document path, or - for stdin")
     return parser
@@ -52,4 +58,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":  # pragma: no cover
     raise SystemExit(main())
-

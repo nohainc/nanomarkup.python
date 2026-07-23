@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import io
 import random
 import unittest
@@ -8,6 +9,10 @@ import nanomarkup
 
 
 class DecoderApiTests(unittest.TestCase):
+    def test_public_version_information(self) -> None:
+        self.assertEqual(nanomarkup.__version__, "0.1.0")
+        self.assertEqual(nanomarkup.SPEC_VERSION, "0.5-draft")
+
     def test_input_forms_and_streams(self) -> None:
         source = b"..\n    city Bratislava"
         expected = {"city": "Bratislava"}
@@ -38,6 +43,17 @@ class DecoderApiTests(unittest.TestCase):
             nanomarkup.loads(source)
         self.assertEqual(raised.exception.code, nanomarkup.ErrorCode.ESCAPE)
         self.assertEqual(raised.exception.line, 2)
+
+    def test_arbitrary_bytes_never_escape_as_internal_errors(self) -> None:
+        randomizer = random.Random(20260723)
+        samples = [bytes([value]) for value in range(256)]
+        samples.extend(
+            randomizer.randbytes(randomizer.randrange(65))
+            for _ in range(1_000)
+        )
+        for source in samples:
+            with contextlib.suppress(nanomarkup.DecodeError):
+                nanomarkup.loads(source)
 
 
 class WriterApiTests(unittest.TestCase):

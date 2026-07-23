@@ -51,6 +51,9 @@ assert value == {
 
 encoded = nanomarkup.dumps(value)
 assert nanomarkup.loads(encoded) == value
+
+assert nanomarkup.__version__ == "0.1.0"
+assert nanomarkup.SPEC_VERSION == "0.5-draft"
 ```
 
 The API follows Python's standard serialization naming convention:
@@ -102,6 +105,7 @@ Validate one or more files with the installed command:
 nanomarkup settings.nano other.nano
 nanomarkup - < settings.nano
 python -m nanomarkup settings.nano
+nanomarkup --version
 ```
 
 Each valid input is reported on standard output. Diagnostics use
@@ -122,6 +126,17 @@ pytest
 ruff check .
 mypy
 ```
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+### Publishing
+
+Releases are built and published from tags matching the package version, such
+as `v0.1.0`. Before the first release, configure a PyPI Trusted Publisher for
+the `nohainc/nanomarkup.python` repository, workflow `release.yml`, and GitHub
+environment `pypi`. Require manual approval for that environment. The workflow
+uses short-lived OpenID Connect credentials and does not require a stored PyPI
+API token.
 
 The implementation provides data decoding and writing only. Comments,
 whitespace, quote choice, source line endings, and mapping source order are

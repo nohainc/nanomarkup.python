@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nanomarkup"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Python parser and serializer for Nano Markup, a minimal, human-readable structured data format."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -46,6 +46,9 @@ where = ["src"]
 [tool.setuptools.package-data]
 nanomarkup = ["py.typed"]
 
+[tool.setuptools.dynamic]
+version = { attr = "nanomarkup._version.__version__" }
+
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = ["tests"]
@@ -61,4 +64,3 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 python_version = "3.11"
 strict = true
 files = ["src", "tests/adapter.py"]
-

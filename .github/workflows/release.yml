@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install ".[dev]"
+      - run: pytest
+      - run: ruff check .
+      - run: mypy
+      - run: python -m build
+      - run: python -m pip install --force-reinstall dist/*.whl
+      - name: Verify tag and package versions
+        run: >-
+          python -c "import os, nanomarkup;
+          assert os.environ['GITHUB_REF_NAME'] == f'v{nanomarkup.__version__}';
+          assert nanomarkup.SPEC_VERSION == '0.5-draft'"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/nanomarkup
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: python-package-distributions
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
