@@ -31,11 +31,15 @@ jobs:
           python -c "import os, nanomarkup;
           assert os.environ['GITHUB_REF_NAME'] == f'v{nanomarkup.__version__}';
           assert nanomarkup.SPEC_VERSION == '0.5-draft'"
-      - run: cd dist && sha256sum nanomarkup-* > SHA256SUMS
       - uses: actions/upload-artifact@v7
         with:
           name: python-package-distributions
           path: dist/
+      - run: mkdir checksums && cd dist && sha256sum nanomarkup-* > ../checksums/SHA256SUMS
+      - uses: actions/upload-artifact@v7
+        with:
+          name: python-package-checksums
+          path: checksums/
 
   publish:
     needs: build
@@ -61,8 +65,12 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: python-package-distributions
-          path: dist/
+          path: release/
+      - uses: actions/download-artifact@v8
+        with:
+          name: python-package-checksums
+          path: release/
       - uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: release/*
           generate_release_notes: true
