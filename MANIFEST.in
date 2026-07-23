@@ -1,0 +1,4 @@
+prune spec
+prune tests
+global-exclude __pycache__ *.py[cod]
+
