@@ -116,7 +116,7 @@ errors.
 ## Conformance and development
 
 The `spec` Git submodule pins the official conformance suite at commit
-`5d228ae4d436db8302f1e2df04aa6329fdb98b35` (Nano Markup 0.5-draft).
+`c36a19dd69aeb523350c9e725fa4f09045507ad0` (Nano Markup 0.5-draft).
 
 ```console
 git clone --recurse-submodules https://github.com/nohainc/nanomarkup.python.git
@@ -151,5 +151,5 @@ untrusted documents should bound input size according to their environment.
 The Python implementation is licensed under the [MIT License](LICENSE).
 
 The specification submodule and its conformance materials are separate works
-licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/5d228ae4d436db8302f1e2df04aa6329fdb98b35/LICENSE).
+licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/c36a19dd69aeb523350c9e725fa4f09045507ad0/LICENSE).
 See [NOTICE.md](NOTICE.md) for attribution and the pinned source revision.

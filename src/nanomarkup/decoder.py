@@ -34,7 +34,7 @@ class _Line:
 
     @property
     def is_blank(self) -> bool:
-        return not self.text or self.text.isspace()
+        return not self.text or not self.text.strip(" ")
 
 
 @dataclass(frozen=True, slots=True)
@@ -513,4 +513,3 @@ def load(stream: TextIO | BinaryIO) -> NanoValue:
     if not isinstance(source, (str, bytes, bytearray, memoryview)):
         raise TypeError("stream.read() must return str or bytes")
     return loads(source)
-

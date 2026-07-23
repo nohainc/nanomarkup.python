@@ -39,9 +39,12 @@ jobs:
       - run: ruff check .
       - run: mypy
       - run: python -m build
+      - run: python -m twine check dist/*
       - run: python -m pip install --force-reinstall dist/*.whl
       - run: >-
           python -c "import nanomarkup;
           assert nanomarkup.__version__ == '0.1.0';
           assert nanomarkup.SPEC_VERSION == '0.5-draft'"
-
+      - run: python -m venv /tmp/sdist-test
+      - run: /tmp/sdist-test/bin/python -m pip install dist/*.tar.gz
+      - run: /tmp/sdist-test/bin/nanomarkup --version

@@ -9,6 +9,30 @@ import nanomarkup
 
 
 class DecoderApiTests(unittest.TestCase):
+    def test_unicode_whitespace_is_string_data(self) -> None:
+        whitespace = [
+            character
+            for codepoint in range(0x110000)
+            if not (0xD800 <= codepoint <= 0xDFFF)
+            and (character := chr(codepoint)).isspace()
+            and codepoint
+            not in {
+                *range(0x00, 0x09),
+                0x0B,
+                0x0C,
+                *range(0x0E, 0x20),
+                *range(0x7F, 0xA0),
+            }
+            and character not in {"\t", "\n", "\r", " "}
+        ]
+        self.assertEqual(len(whitespace), 18)
+        for character in whitespace:
+            with self.subTest(codepoint=f"U+{ord(character):04X}"):
+                self.assertEqual(nanomarkup.loads(character), character)
+                self.assertEqual(nanomarkup.loads(nanomarkup.dumps(character)), character)
+                self.assertEqual(nanomarkup.loads(f":\n    {character}"), [character])
+                self.assertEqual(nanomarkup.loads(f"|\n    {character}"), character)
+
     def test_public_version_information(self) -> None:
         self.assertEqual(nanomarkup.__version__, "0.1.0")
         self.assertEqual(nanomarkup.SPEC_VERSION, "0.5-draft")
