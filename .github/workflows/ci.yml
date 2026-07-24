@@ -44,7 +44,7 @@ jobs:
       - run: >-
           python -c "import nanomarkup;
           assert nanomarkup.__version__ == '0.1.0';
-          assert nanomarkup.SPEC_VERSION == '0.6-draft'"
+          assert nanomarkup.SPEC_VERSION == '1.0.0-rc.1'"
       - run: python -m venv /tmp/sdist-test
       - run: /tmp/sdist-test/bin/python -m pip install dist/*.tar.gz
       - run: /tmp/sdist-test/bin/nanomarkup --version
