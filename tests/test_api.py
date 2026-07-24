@@ -34,8 +34,8 @@ class DecoderApiTests(unittest.TestCase):
                 self.assertEqual(nanomarkup.loads(f"|\n    {character}"), character)
 
     def test_public_version_information(self) -> None:
-        self.assertEqual(nanomarkup.__version__, "0.1.0")
-        self.assertEqual(nanomarkup.SPEC_VERSION, "1.0.0-rc.1")
+        self.assertEqual(nanomarkup.__version__, "1.0.0")
+        self.assertEqual(nanomarkup.SPEC_VERSION, "1.0.0")
 
     def test_input_forms_and_streams(self) -> None:
         source = b"..\n    city Bratislava"

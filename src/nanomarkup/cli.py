@@ -15,7 +15,7 @@ from .errors import DecodeError
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="nanomarkup",
-        description="Validate Nano Markup 1.0.0-rc.1 documents.",
+        description=f"Validate Nano Markup {SPEC_VERSION} documents.",
     )
     parser.add_argument(
         "--version",

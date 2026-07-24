@@ -1,4 +1,4 @@
-"""Nano Markup 1.0.0-rc.1 data decoder."""
+"""Nano Markup 1.0.0 data decoder."""
 
 from __future__ import annotations
 

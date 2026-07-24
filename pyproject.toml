@@ -12,7 +12,7 @@ license = "MIT"
 authors = [{ name = "Vitalii" }]
 keywords = ["nanomarkup", "parser", "serializer", "data-format", "markup"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -24,7 +24,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/nohainc/nanomarkup.python"
+Homepage = "https://nohainc.github.io/nanomarkup.github.com/"
+Documentation = "https://github.com/nohainc/nanomarkup.python#readme"
 Repository = "https://github.com/nohainc/nanomarkup.python"
 Specification = "https://github.com/nohainc/nanomarkup.spec"
 Issues = "https://github.com/nohainc/nanomarkup.python/issues"
