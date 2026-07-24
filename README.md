@@ -5,8 +5,8 @@
 human-readable structured data format.
 
 > [!IMPORTANT]
-> This release implements **Nano Markup 0.6-draft**. The language is unstable
-> and may change incompatibly before 1.0. This package does not claim
+> This release implements **Nano Markup 1.0.0-rc.1**. The language is a release
+> candidate and may change incompatibly before 1.0. This package does not claim
 > conformance to a stable Nano Markup standard.
 
 ## Installation
@@ -53,7 +53,7 @@ encoded = nanomarkup.dumps(value)
 assert nanomarkup.loads(encoded) == value
 
 assert nanomarkup.__version__ == "0.1.0"
-assert nanomarkup.SPEC_VERSION == "0.6-draft"
+assert nanomarkup.SPEC_VERSION == "1.0.0-rc.1"
 ```
 
 The API follows Python's standard serialization naming convention:
@@ -116,7 +116,7 @@ errors.
 ## Conformance and development
 
 The `spec` Git submodule pins the official conformance suite at commit
-`3b33b9fda7406b01925cc644274641b3f2cfbb17` (Nano Markup 0.6-draft).
+`be90b0d0295296d3a85deebdd71b29a238e121e1` (Nano Markup 1.0.0-rc.1).
 
 ```console
 git clone --recurse-submodules https://github.com/nohainc/nanomarkup.python.git

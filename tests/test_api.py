@@ -35,7 +35,7 @@ class DecoderApiTests(unittest.TestCase):
 
     def test_public_version_information(self) -> None:
         self.assertEqual(nanomarkup.__version__, "0.1.0")
-        self.assertEqual(nanomarkup.SPEC_VERSION, "0.6-draft")
+        self.assertEqual(nanomarkup.SPEC_VERSION, "1.0.0-rc.1")
 
     def test_input_forms_and_streams(self) -> None:
         source = b"..\n    city Bratislava"
@@ -71,10 +71,7 @@ class DecoderApiTests(unittest.TestCase):
     def test_arbitrary_bytes_never_escape_as_internal_errors(self) -> None:
         randomizer = random.Random(20260723)
         samples = [bytes([value]) for value in range(256)]
-        samples.extend(
-            randomizer.randbytes(randomizer.randrange(65))
-            for _ in range(1_000)
-        )
+        samples.extend(randomizer.randbytes(randomizer.randrange(65)) for _ in range(1_000))
         for source in samples:
             with contextlib.suppress(nanomarkup.DecodeError):
                 nanomarkup.loads(source)
@@ -109,12 +106,20 @@ class WriterApiTests(unittest.TestCase):
         value: nanomarkup.NanoValue = {"description": "first\nsecond", "status": "done"}
         lf = nanomarkup.dumps(value)
         crlf = nanomarkup.dumps(value, newline="\r\n")
-        self.assertIn("description |\n        first", lf)
+        self.assertIn("description|\n        first", lf)
         self.assertNotIn("\r", lf)
         self.assertIn("\r\n", crlf)
         self.assertNotIn("\n", crlf.replace("\r\n", ""))
         self.assertFalse(lf.endswith("\n"))
         self.assertEqual(nanomarkup.loads(crlf), value)
+
+    def test_mapping_pipe_header_and_scalar_boundary(self) -> None:
+        source = "..\n    block|\n        first\n        second\n    marker |\n    suffix value |"
+        self.assertEqual(
+            nanomarkup.loads(source),
+            {"block": "first\nsecond", "marker": "|", "suffix": "value |"},
+        )
+        self.assertEqual(nanomarkup.dumps({"marker": "|"}), "..\n    marker |")
 
     def test_dump_writes_text_stream(self) -> None:
         stream = io.StringIO()
@@ -163,10 +168,7 @@ class WriterApiTests(unittest.TestCase):
                 return randomizer.choice(strings)
             if randomizer.random() < 0.5:
                 return [generate(depth - 1) for _ in range(randomizer.randrange(5))]
-            return {
-                f"key-{index}": generate(depth - 1)
-                for index in range(randomizer.randrange(5))
-            }
+            return {f"key-{index}": generate(depth - 1) for index in range(randomizer.randrange(5))}
 
         for _ in range(200):
             value = generate(4)

@@ -4,7 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- Updated to Nano Markup 0.6-draft.
+- Updated to Nano Markup 1.0.0-rc.1, including attached `key|` mapping
+  multiline headers and raw `key |` string values.
 - Preserved strings containing space-only logical lines by selecting quoted
   output instead of multiline syntax.
 - Added a runnable decoded-value example.

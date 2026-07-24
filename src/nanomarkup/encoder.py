@@ -1,4 +1,4 @@
-"""Nano Markup 0.6-draft data writer."""
+"""Nano Markup 1.0.0-rc.1 data writer."""
 
 from __future__ import annotations
 
@@ -73,7 +73,7 @@ def _raw_is_safe(value: str, context: _Context) -> bool:
         return False
     if context in ("root", "sequence"):
         return value not in {"..", ":", "|"} and not value.startswith("#")
-    return value != "|"
+    return True
 
 
 def _quote(value: str) -> str:
@@ -119,9 +119,7 @@ class _Writer:
             self.lines.append(prefix + line if line else "")
 
     def write(self, value: NanoValue) -> list[str]:
-        tasks: list[tuple[NanoValue, int, _Context, str | None]] = [
-            (value, 0, "root", None)
-        ]
+        tasks: list[tuple[NanoValue, int, _Context, str | None]] = [(value, 0, "root", None)]
         while tasks:
             current, level, context, key = tasks.pop()
             prefix = self._indent(level)
@@ -153,7 +151,7 @@ class _Writer:
                 if string == "":
                     self.lines.append(f"{prefix}{key}")
                 elif _can_use_multiline(string):
-                    self._multiline(f"{prefix}{key} |", string, level + 1)
+                    self._multiline(f"{prefix}{key}|", string, level + 1)
                 else:
                     self.lines.append(f"{prefix}{key} {_scalar(string, 'mapping')}")
             elif _can_use_multiline(string):

@@ -1,4 +1,4 @@
-"""Nano Markup 0.6-draft data decoder."""
+"""Nano Markup 1.0.0-rc.1 data decoder."""
 
 from __future__ import annotations
 
@@ -180,9 +180,7 @@ class _Parser:
             byte_offset = line.byte_start + len(prefix.encode("utf-8"))
             source_line = line.number
             column = character_offset + 1
-        self.diagnostics.append(
-            _Diagnostic(code, message, byte_offset, source_line, column)
-        )
+        self.diagnostics.append(_Diagnostic(code, message, byte_offset, source_line, column))
 
     def _skip_ignored(self) -> None:
         while self.index < len(self.lines):
@@ -218,7 +216,7 @@ class _Parser:
     def _parse_quoted(self, text: str, line: _Line, start: int) -> str:
         result: list[str] = []
         index = 1
-        escapes = {"\"": "\"", "\\": "\\", "n": "\n", "r": "\r", "t": "\t"}
+        escapes = {'"': '"', "\\": "\\", "n": "\n", "r": "\r", "t": "\t"}
         while index < len(text):
             character = text[index]
             if character == '"':
@@ -350,8 +348,8 @@ class _Parser:
             key = text[:-1]
             value = []
             child_kind = "sequence"
-        elif text.endswith(" |"):
-            key = text[:-2]
+        elif text.endswith("|") and " " not in text:
+            key = text[:-1]
             value = self._collect_multiline(frame.level)
         elif " " not in text:
             key = text

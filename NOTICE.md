@@ -2,7 +2,7 @@
 
 ## Nano Markup specification and conformance suite
 
-- Work: Nano Markup 0.6-draft specification and conformance materials
+- Work: Nano Markup 1.0.0-rc.1 specification and conformance materials
 - Source: https://github.com/nohainc/nanomarkup.spec
 - Pinned revision: `3b33b9fda7406b01925cc644274641b3f2cfbb17`
 - Copyright: © 2026 Nano Markup contributors

@@ -7,6 +7,9 @@ source = b"""\
     user..
         name Ariana
         age 12
+        address|
+            Lisova 20
+            1111 Example City
     interests:
         cycling
         music
@@ -23,10 +26,12 @@ if not isinstance(user, dict) or not isinstance(interests, list):
 
 name = user.get("name")
 age = user.get("age")
-if not isinstance(name, str) or not isinstance(age, str):
+address = user.get("address")
+if not isinstance(name, str) or not isinstance(age, str) or not isinstance(address, str):
     raise TypeError("user fields must be strings")
 
 print(f"{name} is {int(age)} and likes {', '.join(map(str, interests))}.")
+print(address)
 
 user["age"] = "13"
 interests.append("swimming")

@@ -26,7 +26,7 @@ class CliTests(unittest.TestCase):
     def test_version(self) -> None:
         result = run_cli("--version")
         self.assertEqual(result.returncode, 0)
-        self.assertEqual(result.stdout, b"nanomarkup 0.1.0 (Nano Markup 0.6-draft)\n")
+        self.assertEqual(result.stdout, b"nanomarkup 0.1.0 (Nano Markup 1.0.0-rc.1)\n")
         self.assertEqual(result.stderr, b"")
 
     def test_valid_file_and_stdin(self) -> None:
