@@ -116,7 +116,7 @@ errors.
 ## Conformance and development
 
 The `spec` Git submodule pins the official conformance suite at commit
-`76f2b517a557e6972bcb634c7f8df75edba156a7` (Nano Markup 1.0.0-rc.1).
+`680ea16ffd5b35187bcf522464bd05154bf4bce9` (Nano Markup 1.0.0-rc.1).
 
 ```console
 git clone --recurse-submodules https://github.com/nohainc/nanomarkup.python.git
