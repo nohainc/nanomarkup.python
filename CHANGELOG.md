@@ -4,22 +4,21 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- Updated to Nano Markup 1.0.0-rc.1, including attached `key|` mapping
-  multiline headers and raw `key |` string values.
-- Preserved strings containing space-only logical lines by selecting quoted
-  output instead of multiline syntax.
-- Added a runnable decoded-value example.
+## [1.0.0] - 2026-07-24
 
-## [0.1.0] - 2026-07-23
-
-- Added a Nano Markup 0.5-draft parser for strings, mappings, and sequences.
+- Added a stable Nano Markup 1.0.0 parser and writer for strings, mappings, and
+  sequences.
 - Added deterministic specification error categories and source locations.
 - Added `load`, `loads`, `dump`, and `dumps` APIs using Python-native values.
-- Added a validation CLI and conformance protocol adapter.
-- Added the pinned official specification and conformance suite.
-- Added typed-package metadata, tests, documentation, and CI for Python 3.11–3.14.
-- Correctly preserved all permitted Unicode whitespace as string data.
-- Added writer protocol and cross-implementation conformance coverage.
+- Added a validation CLI and language-neutral conformance adapter.
+- Added the pinned stable specification and its complete 112-case conformance
+  corpus.
+- Added typed-package metadata, documentation, examples, and CI for Python
+  3.11–3.14.
+- Added writer round trips, Unicode exactness, malformed-input, deep-nesting,
+  cycle, and unsupported-value tests.
+- Added clean wheel and source-distribution validation and an approval-gated
+  PyPI Trusted Publishing workflow.
 
-[Unreleased]: https://github.com/nohainc/nanomarkup.python/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/nohainc/nanomarkup.python/releases/tag/v0.1.0
+[Unreleased]: https://github.com/nohainc/nanomarkup.python/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/nohainc/nanomarkup.python/releases/tag/v1.0.0

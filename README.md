@@ -4,10 +4,7 @@
 [Nano Markup](https://github.com/nohainc/nanomarkup.spec), a minimal,
 human-readable structured data format.
 
-> [!IMPORTANT]
-> This release implements **Nano Markup 1.0.0-rc.1**. The language is a release
-> candidate and may change incompatibly before 1.0. This package does not claim
-> conformance to a stable Nano Markup standard.
+Version 1.0.0 implements the stable **Nano Markup 1.0.0** specification.
 
 ## Installation
 
@@ -52,8 +49,8 @@ assert value == {
 encoded = nanomarkup.dumps(value)
 assert nanomarkup.loads(encoded) == value
 
-assert nanomarkup.__version__ == "0.1.0"
-assert nanomarkup.SPEC_VERSION == "1.0.0-rc.1"
+assert nanomarkup.__version__ == "1.0.0"
+assert nanomarkup.SPEC_VERSION == "1.0.0"
 ```
 
 The API follows Python's standard serialization naming convention:
@@ -116,7 +113,7 @@ errors.
 ## Conformance and development
 
 The `spec` Git submodule pins the official conformance suite at commit
-`680ea16ffd5b35187bcf522464bd05154bf4bce9` (Nano Markup 1.0.0-rc.1).
+`bba11e49ca3a904cef07b067f6fc0597b0facba2` (tag `v1.0.0`).
 
 ```console
 git clone --recurse-submodules https://github.com/nohainc/nanomarkup.python.git
@@ -128,11 +125,13 @@ mypy
 ```
 
 See [CHANGELOG.md](CHANGELOG.md) for release history.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and
+[SECURITY.md](SECURITY.md) for private vulnerability reporting.
 
 ### Publishing
 
 Releases are built and published from tags matching the package version, such
-as `v0.1.0`. Before the first release, configure a PyPI Trusted Publisher for
+as `v1.0.0`. Before the first release, configure a PyPI Trusted Publisher for
 the `nohainc/nanomarkup.python` repository, workflow `release.yml`, and GitHub
 environment `pypi`. Require manual approval for that environment. The workflow
 uses short-lived OpenID Connect credentials and does not require a stored PyPI
@@ -151,5 +150,5 @@ untrusted documents should bound input size according to their environment.
 The Python implementation is licensed under the [MIT License](LICENSE).
 
 The specification submodule and its conformance materials are separate works
-licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/3b33b9fda7406b01925cc644274641b3f2cfbb17/LICENSE).
+licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/bba11e49ca3a904cef07b067f6fc0597b0facba2/LICENSE).
 See [NOTICE.md](NOTICE.md) for attribution and the pinned source revision.

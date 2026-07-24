@@ -1,4 +1,4 @@
-"""Nano Markup 1.0.0-rc.1 data writer."""
+"""Nano Markup 1.0.0 data writer."""
 
 from __future__ import annotations
 
