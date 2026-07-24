@@ -6,7 +6,7 @@ from enum import StrEnum
 
 
 class ErrorCode(StrEnum):
-    """Stable decoder error categories from Nano Markup 0.5-draft."""
+    """Stable decoder error categories from Nano Markup 0.6-draft."""
 
     ENCODING = "E_ENCODING"
     TAB = "E_TAB"

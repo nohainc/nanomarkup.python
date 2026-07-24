@@ -1,4 +1,4 @@
-"""Nano Markup 0.5-draft data writer."""
+"""Nano Markup 0.6-draft data writer."""
 
 from __future__ import annotations
 
@@ -94,7 +94,14 @@ def _scalar(value: str, context: _Context) -> str:
 
 
 def _can_use_multiline(value: str) -> bool:
-    return "\n" in value and "\r" not in value and "\t" not in value and not value.endswith("\n")
+    lines = value.split("\n")
+    return (
+        "\n" in value
+        and "\r" not in value
+        and "\t" not in value
+        and not value.endswith("\n")
+        and all(not line or line.strip(" ") for line in lines)
+    )
 
 
 class _Writer:

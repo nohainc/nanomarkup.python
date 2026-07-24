@@ -35,7 +35,7 @@ class DecoderApiTests(unittest.TestCase):
 
     def test_public_version_information(self) -> None:
         self.assertEqual(nanomarkup.__version__, "0.1.0")
-        self.assertEqual(nanomarkup.SPEC_VERSION, "0.5-draft")
+        self.assertEqual(nanomarkup.SPEC_VERSION, "0.6-draft")
 
     def test_input_forms_and_streams(self) -> None:
         source = b"..\n    city Bratislava"
@@ -81,6 +81,14 @@ class DecoderApiTests(unittest.TestCase):
 
 
 class WriterApiTests(unittest.TestCase):
+    def test_space_only_logical_lines_use_quoted_output(self) -> None:
+        values = ["a\n \nb", "a\n   \nb", " \ntext", "text\n "]
+        for value in values:
+            with self.subTest(value=value):
+                encoded = nanomarkup.dumps(value)
+                self.assertTrue(encoded.startswith('"'))
+                self.assertEqual(nanomarkup.loads(encoded), value)
+
     def test_round_trip_values(self) -> None:
         values: list[nanomarkup.NanoValue] = [
             "",

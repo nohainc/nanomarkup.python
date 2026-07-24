@@ -5,7 +5,7 @@
 human-readable structured data format.
 
 > [!IMPORTANT]
-> This release implements **Nano Markup 0.5-draft**. The language is unstable
+> This release implements **Nano Markup 0.6-draft**. The language is unstable
 > and may change incompatibly before 1.0. This package does not claim
 > conformance to a stable Nano Markup standard.
 
@@ -53,7 +53,7 @@ encoded = nanomarkup.dumps(value)
 assert nanomarkup.loads(encoded) == value
 
 assert nanomarkup.__version__ == "0.1.0"
-assert nanomarkup.SPEC_VERSION == "0.5-draft"
+assert nanomarkup.SPEC_VERSION == "0.6-draft"
 ```
 
 The API follows Python's standard serialization naming convention:
@@ -116,7 +116,7 @@ errors.
 ## Conformance and development
 
 The `spec` Git submodule pins the official conformance suite at commit
-`c36a19dd69aeb523350c9e725fa4f09045507ad0` (Nano Markup 0.5-draft).
+`3b33b9fda7406b01925cc644274641b3f2cfbb17` (Nano Markup 0.6-draft).
 
 ```console
 git clone --recurse-submodules https://github.com/nohainc/nanomarkup.python.git
@@ -151,5 +151,5 @@ untrusted documents should bound input size according to their environment.
 The Python implementation is licensed under the [MIT License](LICENSE).
 
 The specification submodule and its conformance materials are separate works
-licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/c36a19dd69aeb523350c9e725fa4f09045507ad0/LICENSE).
+licensed under the [Creative Commons Attribution 4.0 International License](https://github.com/nohainc/nanomarkup.spec/blob/3b33b9fda7406b01925cc644274641b3f2cfbb17/LICENSE).
 See [NOTICE.md](NOTICE.md) for attribution and the pinned source revision.

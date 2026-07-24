@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- Updated to Nano Markup 0.6-draft.
+- Preserved strings containing space-only logical lines by selecting quoted
+  output instead of multiline syntax.
+- Added a runnable decoded-value example.
+
 ## [0.1.0] - 2026-07-23
 
 - Added a Nano Markup 0.5-draft parser for strings, mappings, and sequences.
